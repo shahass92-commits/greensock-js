@@ -4,9 +4,6 @@ import ScrollTrigger from "./esm/ScrollTrigger.js";
 gsap.registerPlugin(ScrollTrigger);
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const scenes = gsap.utils.toArray(".scene");
-const railFill = document.querySelector(".rail-fill");
-const railCurrent = document.querySelector(".journey-rail .rail-number");
 
 function buildFlightSequence() {
   const flight = document.querySelector(".scene-flight");
@@ -91,140 +88,231 @@ function buildFlightSequence() {
   });
 }
 
+// ---------- Always-on behaviour (works with reduced motion too) ----------
+
+const railLinks = gsap.utils.toArray("#sectionNavRail a");
+const menuTrigger = document.querySelector(".menu-trigger");
+
+function setMenu(open) {
+  document.body.classList.toggle("nav-open", open);
+  menuTrigger.setAttribute("aria-expanded", String(open));
+}
+menuTrigger.addEventListener("click", () => setMenu(!document.body.classList.contains("nav-open")));
+railLinks.forEach((link) => link.addEventListener("click", () => setMenu(false)));
+document.addEventListener("keydown", (event) => { if (event.key === "Escape") setMenu(false); });
+
+// Carbon estimate: vehicles × km/day × 365 × kg CO2 per km, in tonnes.
+const sim = {
+  vehicles: document.getElementById("simVehicles"),
+  km: document.getElementById("simKm"),
+  factor: document.getElementById("simFactor"),
+  vehiclesOut: document.getElementById("simVehiclesOut"),
+  kmOut: document.getElementById("simKmOut"),
+  result: document.getElementById("simResult")
+};
+function updateCarbon() {
+  const vehicles = Number(sim.vehicles.value);
+  const km = Number(sim.km.value);
+  const factor = Math.max(0, Number(sim.factor.value) || 0);
+  sim.vehiclesOut.textContent = vehicles;
+  sim.kmOut.textContent = km;
+  sim.result.textContent = Math.round((vehicles * km * 365 * factor) / 1000).toLocaleString("en-IN");
+}
+document.getElementById("carbonSim").addEventListener("input", updateCarbon);
+document.getElementById("carbonSim").addEventListener("submit", (event) => event.preventDefault());
+updateCarbon();
+
+// EV garage bays and the emergency override.
+const bays = gsap.utils.toArray(".bay");
+const garageGrid = document.getElementById("garageGrid");
+const garageCount = document.getElementById("garageCount");
+const overrideBtn = document.getElementById("garageOverride");
+let baysOn = bays.length;
+function renderBays() {
+  const override = garageGrid.classList.contains("is-override");
+  bays.forEach((bay, i) => bay.classList.toggle("is-on", !override && i < baysOn));
+  garageCount.textContent = override ? 0 : baysOn;
+}
+overrideBtn.addEventListener("click", () => {
+  const on = !garageGrid.classList.contains("is-override");
+  garageGrid.classList.toggle("is-override", on);
+  overrideBtn.setAttribute("aria-pressed", String(on));
+  overrideBtn.textContent = on ? "Restore charging" : "Emergency override";
+  renderBays();
+});
+renderBays();
+
+// Counters show their final value in the HTML; animate them up from zero when seen.
+function animateCounter(el) {
+  const target = Number(el.dataset.count);
+  const decimals = Number(el.dataset.decimals || 0);
+  const prefix = el.dataset.prefix || "";
+  const suffix = el.dataset.suffix || "";
+  const state = { value: 0 };
+  gsap.to(state, {
+    value: target,
+    duration: 1.8,
+    ease: "power3.out",
+    onUpdate: () => { el.textContent = prefix + state.value.toFixed(decimals) + suffix; }
+  });
+}
+
+// ---------- Scroll choreography ----------
+
 if (!reducedMotion) {
   buildFlightSequence();
+  const mm = gsap.matchMedia();
 
-  gsap.to(".rail-fill", {
-    width: "100%",
-    ease: "none",
-    scrollTrigger: {
-      trigger: "main",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 0.3
-    }
-  });
-
-  gsap.to(".cloud-field-far", {
-    yPercent: 18,
-    scale: 1.3,
-    ease: "none",
-    scrollTrigger: { trigger: ".scene-arrival", start: "top top", end: "bottom top", scrub: 1 }
-  });
-
-  gsap.to(".cloud-field-near", {
-    yPercent: 34,
-    scale: 1.45,
-    ease: "none",
-    scrollTrigger: { trigger: ".scene-arrival", start: "top top", end: "bottom top", scrub: 1.2 }
-  });
-
-  gsap.to(".hero-content", {
-    yPercent: -34,
-    opacity: 0,
-    ease: "none",
-    scrollTrigger: { trigger: ".scene-arrival", start: "46% top", end: "bottom top", scrub: true }
-  });
-
-  gsap.to(".storm-tunnel", {
-    scale: 1.34,
-    rotation: 16,
-    ease: "none",
-    scrollTrigger: { trigger: ".scene-clouds", start: "top bottom", end: "bottom top", scrub: 1 }
-  });
-
-  gsap.to(".cloud-bank-left", {
-    xPercent: -25,
-    yPercent: 8,
-    ease: "none",
-    scrollTrigger: { trigger: ".scene-clouds", start: "top bottom", end: "bottom top", scrub: 1 }
-  });
-
-  gsap.to(".cloud-bank-right", {
-    xPercent: 25,
-    yPercent: -8,
-    ease: "none",
-    scrollTrigger: { trigger: ".scene-clouds", start: "top bottom", end: "bottom top", scrub: 1 }
-  });
-
-  gsap.to(".orbit-ring-large", {
-    rotation: 130,
-    scale: 1.2,
-    ease: "none",
-    scrollTrigger: { trigger: ".scene-orbit", start: "top bottom", end: "bottom top", scrub: 1 }
-  });
-
-  gsap.to(".orbit-ring-small", {
-    rotation: -200,
-    scale: 1.45,
-    ease: "none",
-    scrollTrigger: { trigger: ".scene-orbit", start: "top bottom", end: "bottom top", scrub: 1 }
-  });
-
-  gsap.to(".orbital-grid", {
-    rotation: 55,
-    scale: 1.25,
-    ease: "none",
-    scrollTrigger: { trigger: ".scene-orbit", start: "top bottom", end: "bottom top", scrub: 1 }
-  });
-
-  gsap.to(".urban-grid", {
-    yPercent: 14,
-    scale: 2,
-    ease: "none",
-    scrollTrigger: { trigger: ".scene-nexus", start: "top bottom", end: "bottom top", scrub: 1 }
-  });
-
-  gsap.to(".nexus-rings", {
-    rotation: 175,
-    scale: 1.45,
-    ease: "none",
-    scrollTrigger: { trigger: ".scene-nexus", start: "top bottom", end: "bottom top", scrub: 1 }
-  });
-
-  gsap.to(".nexus-core", {
-    scale: 1.8,
-    ease: "none",
-    scrollTrigger: { trigger: ".scene-nexus", start: "top 75%", end: "bottom 25%", scrub: 0.8 }
-  });
-
-  gsap.to(".landing-platform", {
-    yPercent: -22,
-    scale: 1.12,
-    rotation: 11,
-    ease: "none",
-    scrollTrigger: { trigger: ".scene-touchdown", start: "top bottom", end: "bottom top", scrub: 1 }
-  });
-
-  gsap.from(".touchdown-copy", {
-    y: 90,
-    opacity: 0,
-    ease: "power2.out",
-    scrollTrigger: { trigger: ".scene-touchdown", start: "top 65%", end: "top 28%", scrub: 0.8 }
-  });
-
-  scenes.forEach((scene, index) => {
-    const copy = scene.querySelector(".scene-copy");
-    if (copy && index > 0 && index < scenes.length - 1) {
-      gsap.from(copy, {
-        y: 70,
-        opacity: 0,
-        ease: "power2.out",
-        scrollTrigger: { trigger: scene, start: "top 70%", end: "top 35%", scrub: 0.7 }
-      });
-    }
-
-    ScrollTrigger.create({
-      trigger: scene,
-      start: "top center",
-      end: "bottom center",
-      onToggle: ({ isActive }) => {
-        if (isActive) railCurrent.textContent = String(index + 1).padStart(2, "0");
-      }
+  // Section headings rise in as each section arrives.
+  gsap.utils.toArray(".sec .sec-head").forEach((head) => {
+    gsap.from(head.children, {
+      y: 36,
+      autoAlpha: 0,
+      stagger: 0.08,
+      duration: 0.9,
+      ease: "power3.out",
+      scrollTrigger: { trigger: head, start: "top 82%", toggleActions: "play none none reverse" }
     });
   });
 
-  gsap.from(".brand, .flight-status, .menu-trigger, .journey-rail", {
+  // 02 EV fleet: pinned horizontal rail on wide screens.
+  mm.add("(min-width: 701px)", () => {
+    const track = document.querySelector(".fleet-track");
+    const rail = document.querySelector(".fleet-rail");
+    // The rail bleeds to the viewport edges; keep the same gutter after the last card.
+    const distance = () => Math.max(0, track.scrollWidth + 2 * parseFloat(getComputedStyle(rail).paddingLeft) - rail.clientWidth);
+    gsap.to(track, {
+      x: () => -distance(),
+      ease: "none",
+      scrollTrigger: { trigger: "#evFleet", start: "top top", end: () => "+=" + Math.max(distance() * 1.6, window.innerHeight * 0.9), pin: true, scrub: 1, invalidateOnRefresh: true }
+    });
+  });
+
+  // 03 EV garage: bays energise one by one as the section scrubs past.
+  baysOn = 0;
+  renderBays();
+  ScrollTrigger.create({
+    trigger: "#evGarage",
+    start: "top 70%",
+    end: "center center",
+    scrub: true,
+    onUpdate: (self) => {
+      const next = Math.round(self.progress * bays.length);
+      if (next !== baysOn) { baysOn = next; renderBays(); }
+    }
+  });
+  gsap.from(".bay", {
+    rotationX: -70,
+    autoAlpha: 0,
+    transformOrigin: "50% 100%",
+    stagger: 0.05,
+    duration: 0.8,
+    ease: "back.out(1.4)",
+    scrollTrigger: { trigger: "#garageGrid", start: "top 85%", toggleActions: "play none none reverse" }
+  });
+
+  // 04 Operations: panel lifts in, counters run, pipeline bars grow.
+  const opsTl = gsap.timeline({ scrollTrigger: { trigger: ".ops-panel", start: "top 78%", toggleActions: "play none none reverse" } });
+  opsTl.from(".ops-panel", { y: 60, autoAlpha: 0, duration: 0.9, ease: "power3.out" })
+    .from(".ops-tile", { y: 24, autoAlpha: 0, stagger: 0.07, duration: 0.6, ease: "power2.out", onStart: () => document.querySelectorAll(".ops-tile [data-count]").forEach(animateCounter) }, "-=0.5")
+    .fromTo(".ops-pipeline i", { "--grow": 0 }, { "--grow": 1, stagger: 0.06, duration: 0.8, ease: "power2.out" }, "-=0.3")
+    .from(".ops-feed li", { x: 24, autoAlpha: 0, stagger: 0.08, duration: 0.5 }, "<");
+
+  // 05 Water tower: the scope tilts flat and the reticle turns as you scroll.
+  gsap.fromTo(".scope-plane", { rotationX: 38, rotationZ: -8, scale: 0.86 }, {
+    rotationX: 0, rotationZ: 0, scale: 1, ease: "none",
+    scrollTrigger: { trigger: "#landmark", start: "top bottom", end: "center center", scrub: 1 }
+  });
+  gsap.to(".scope-reticle i", {
+    rotation: (i) => (i ? -180 : 180), ease: "none",
+    scrollTrigger: { trigger: "#landmark", start: "top bottom", end: "bottom top", scrub: 1 }
+  });
+
+  // 06 Digital twin: 3D tilt on scroll, nodes pop in, gentle ambient spin.
+  gsap.fromTo(".twin-orbit", { rotationX: 55 }, {
+    rotationX: 12, ease: "none",
+    scrollTrigger: { trigger: "#twin", start: "top bottom", end: "center center", scrub: 1 }
+  });
+  gsap.from(".twin-node", {
+    scale: 0, autoAlpha: 0, stagger: 0.06, duration: 0.6, ease: "back.out(2)",
+    scrollTrigger: { trigger: ".twin-orbit", start: "top 75%", toggleActions: "play none none reverse" }
+  });
+  const twinSpin = gsap.to(".twin-orbit", { rotationZ: 360, duration: 90, ease: "none", repeat: -1 });
+  const twinCounter = gsap.to(".twin-node, .twin-core", { rotationZ: -360, duration: 90, ease: "none", repeat: -1 });
+  const twinBtn = document.getElementById("twinMotion");
+  twinBtn.addEventListener("click", () => {
+    const playing = !twinSpin.paused();
+    twinSpin.paused(playing);
+    twinCounter.paused(playing);
+    twinBtn.setAttribute("aria-pressed", String(!playing));
+    twinBtn.textContent = playing ? "Resume motion" : "Pause motion";
+  });
+
+  // 07 Process: pinned, the line draws and each step lights in turn.
+  const steps = gsap.utils.toArray(".process-step");
+  document.querySelector(".process-steps").classList.add("is-scrubbing");
+  gsap.fromTo(".process-line i", { scaleX: 0 }, {
+    scaleX: 1, ease: "none",
+    scrollTrigger: {
+      trigger: "#process", start: "top top", end: "+=150%", pin: true, scrub: 0.6,
+      onUpdate: (self) => {
+        const active = Math.min(steps.length - 1, Math.floor(self.progress * steps.length));
+        steps.forEach((step, i) => step.classList.toggle("is-active", i <= active));
+      }
+    }
+  });
+
+  // 08 Stats: pillars rise and count up.
+  gsap.from(".stat", {
+    y: 40, autoAlpha: 0, stagger: 0.06, duration: 0.7, ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".stats-grid", start: "top 80%", toggleActions: "play none none reverse",
+      onEnter: () => document.querySelectorAll(".stat [data-count]").forEach(animateCounter)
+    }
+  });
+
+  // 09 Company cards.
+  gsap.from(".company-card", {
+    y: 50, autoAlpha: 0, rotationY: -12, stagger: 0.1, duration: 0.8, ease: "power3.out",
+    scrollTrigger: { trigger: ".company-cards", start: "top 80%", toggleActions: "play none none reverse" }
+  });
+
+  // 10 Services: pinned horizontal track on wide screens.
+  mm.add("(min-width: 701px)", () => {
+    const track = document.querySelector(".usecase-track");
+    const distance = () => Math.max(0, track.scrollWidth - document.querySelector(".usecase-pin").clientWidth);
+    const pinLength = () => Math.max(distance() * 1.6, window.innerHeight * 0.9);
+    gsap.to(track, {
+      x: () => -distance(),
+      ease: "none",
+      scrollTrigger: { trigger: "#usecases", start: "top top", end: () => "+=" + pinLength(), pin: true, scrub: 1, invalidateOnRefresh: true }
+    });
+    gsap.utils.toArray(".usecase-card img").forEach((img) => {
+      gsap.fromTo(img, { scale: 1.25 }, { scale: 1, ease: "none", scrollTrigger: { trigger: "#usecases", start: "top top", end: () => "+=" + pinLength(), scrub: 1, invalidateOnRefresh: true } });
+    });
+  });
+
+  // 11 Seaport: radar sweeps, nodes ping, cards slide in.
+  gsap.to(".radar-sweep", { rotation: 360, duration: 4, ease: "none", repeat: -1 });
+  gsap.fromTo(".radar-node i", { scale: 0.6 }, { scale: 1.35, duration: 0.9, ease: "sine.inOut", yoyo: true, repeat: -1, stagger: 0.3 });
+  gsap.from(".port-radar", {
+    scale: 0.7, autoAlpha: 0, duration: 1, ease: "power3.out",
+    scrollTrigger: { trigger: "#port", start: "top 70%", toggleActions: "play none none reverse" }
+  });
+  gsap.from(".port-cards article", {
+    x: 60, autoAlpha: 0, stagger: 0.1, duration: 0.7, ease: "power3.out",
+    scrollTrigger: { trigger: ".port-cards", start: "top 85%", toggleActions: "play none none reverse" }
+  });
+
+  // 12 CTA: HUD brackets close in on the terminal.
+  const ctaTl = gsap.timeline({ scrollTrigger: { trigger: "#cta", start: "top 65%", toggleActions: "play none none reverse" } });
+  ctaTl.from(".cta-terminal", { y: 60, autoAlpha: 0, duration: 0.9, ease: "power3.out" })
+    .from(".hud-tl", { x: -30, y: -30, autoAlpha: 0, duration: 0.5 }, "-=0.4")
+    .from(".hud-tr", { x: 30, y: -30, autoAlpha: 0, duration: 0.5 }, "<")
+    .from(".hud-bl", { x: -30, y: 30, autoAlpha: 0, duration: 0.5 }, "<")
+    .from(".hud-br", { x: 30, y: 30, autoAlpha: 0, duration: 0.5 }, "<");
+
+  gsap.from(".brand, .flight-status, .menu-trigger, .section-rail", {
     y: -12,
     opacity: 0,
     duration: 1.1,
@@ -232,6 +320,19 @@ if (!reducedMotion) {
     ease: "power3.out",
     delay: 0.2
   });
-} else {
-  railFill.style.width = "100%";
 }
+
+// Rail triggers are created last so their positions include pin spacing above them.
+gsap.utils.toArray("[data-section]").forEach((section) => {
+  const link = railLinks.find((a) => a.dataset.target === section.id);
+  ScrollTrigger.create({
+    trigger: section,
+    start: "top center",
+    end: "bottom center",
+    onToggle: ({ isActive }) => {
+      if (!isActive) return;
+      railLinks.forEach((a) => { a.classList.toggle("is-active", a === link); a.removeAttribute("aria-current"); });
+      link.setAttribute("aria-current", "true");
+    }
+  });
+});

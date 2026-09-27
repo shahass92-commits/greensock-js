@@ -34,17 +34,26 @@
         <span class="status-pulse"></span>
         <span>LIVE APPROACH</span>
       </div>
-      <button class="menu-trigger" type="button" aria-label="Open navigation"><span></span><span></span></button>
+      <button class="menu-trigger" type="button" aria-label="Open section menu" aria-controls="sectionNavRail" aria-expanded="false"><span></span><span></span></button>
     </header>
 
-    <aside class="journey-rail" aria-label="Journey progress">
-      <span class="rail-number">01</span>
-      <span class="rail-line"><i class="rail-fill"></i></span>
-      <span class="rail-number">06</span>
-    </aside>
+    <nav class="section-rail" id="sectionNavRail" aria-label="Page sections">
+      <a href="#flight" data-target="flight"><span>01</span><b>Flight</b></a>
+      <a href="#evFleet" data-target="evFleet"><span>02</span><b>EV Fleet</b></a>
+      <a href="#evGarage" data-target="evGarage"><span>03</span><b>EV Garage</b></a>
+      <a href="#dashboard" data-target="dashboard"><span>04</span><b>Operations</b></a>
+      <a href="#landmark" data-target="landmark"><span>05</span><b>Water Tower</b></a>
+      <a href="#twin" data-target="twin"><span>06</span><b>Digital Twin</b></a>
+      <a href="#process" data-target="process"><span>07</span><b>Process</b></a>
+      <a href="#stats" data-target="stats"><span>08</span><b>Stats</b></a>
+      <a href="#company" data-target="company"><span>09</span><b>Company</b></a>
+      <a href="#usecases" data-target="usecases"><span>10</span><b>Services</b></a>
+      <a href="#port" data-target="port"><span>11</span><b>Seaport</b></a>
+      <a href="#cta" data-target="cta"><span>12</span><b>Contact</b></a>
+    </nav>
 
     <main>
-      <section class="scene scene-flight" id="flight" data-scene="01" aria-label="Flight approach over four Thiruvananthapuram landmarks">
+      <section class="scene scene-flight" id="flight" data-section="01" aria-label="Flight approach over four Thiruvananthapuram landmarks">
         <div class="flight-stage">
           <figure class="flight-layer" id="flight-l1" data-alt="11000">
             <img src="assets/flight/l1-technopark-water-tower.jpg" alt="Aerial dusk view from an aircraft window over the Technopark water tower, a circular smart-campus road network, office blocks and the Arabian Sea coastline." width="1672" height="941" decoding="async" fetchpriority="high" />
@@ -110,78 +119,257 @@
         </div>
       </section>
 
-      <section class="scene scene-arrival" id="arrival" data-scene="02">
-        <div class="cloud-field cloud-field-far"></div>
-        <div class="cloud-field cloud-field-near"></div>
-        <div class="aurora-haze"></div>
-        <div class="hero-content">
-          <p class="eyebrow">00° 12' 42.6&quot; N &nbsp;·&nbsp; NIGHT ROUTE</p>
-          <h1 class="hero-title"><span>THE WAY</span><em>IN</em></h1>
-          <p class="hero-copy">Follow the signal beneath the storm. A city-scale gateway waits where every direction converges.</p>
+      <section class="sec sec-fleet" id="evFleet" data-section="02" aria-labelledby="evFleet-title">
+        <div class="sec-head">
+          <span class="sec-badge">02 / EV FLEET &amp; ESG</span>
+          <h2 id="evFleet-title">An electric fleet<br />built for <em>shift work.</em></h2>
+          <p>Employee transport runs on schedules, not showroom specs. The fleet mixes pioneer EV sedans, executive EV SUVs and partner vehicles so every roster has the right seat.</p>
         </div>
-        <div class="scroll-prompt"><span>SCROLL TO DESCEND</span><i></i></div>
-        <div class="scene-corner corner-top">CN / 001</div>
-        <div class="scene-corner corner-bottom">ALT. 10,400 M</div>
+        <div class="fleet-rail">
+          <div class="fleet-track">
+            <article class="fleet-card">
+              <span class="fleet-tag">PIONEER</span>
+              <h3>Tata Tigor EV</h3>
+              <p>The sedans that started the electric switch. Daily shift pickups and drops across the Technopark corridor.</p>
+              <dl><div><dt>Role</dt><dd>Shift shuttle</dd></div><div><dt>Power</dt><dd>Battery electric</dd></div></dl>
+            </article>
+            <article class="fleet-card">
+              <span class="fleet-tag">EXECUTIVE</span>
+              <h3>Executive EV SUVs</h3>
+              <p>Leadership travel, client visits and airport runs, in vehicles that match the standard of the people inside.</p>
+              <dl><div><dt>Role</dt><dd>Executive &amp; airport</dd></div><div><dt>Power</dt><dd>Battery electric</dd></div></dl>
+            </article>
+            <article class="fleet-card">
+              <span class="fleet-tag">PARTNER</span>
+              <h3>MLL Mobility fleet</h3>
+              <p>Sub-vendor operations for MLL Mobility accounts, run to the same trip, verification and billing records as direct accounts.</p>
+              <dl><div><dt>Role</dt><dd>Sub-vendor operations</dd></div><div><dt>Account type</dt><dd>Partner</dd></div></dl>
+            </article>
+            <article class="fleet-card fleet-card-sim">
+              <span class="fleet-tag">ESG</span>
+              <h3>Carbon estimate</h3>
+              <form class="carbon-sim" id="carbonSim">
+                <label for="simVehicles">EV vehicles <output id="simVehiclesOut">40</output></label>
+                <input id="simVehicles" type="range" min="1" max="150" value="40" />
+                <label for="simKm">Km per vehicle per day <output id="simKmOut">120</output></label>
+                <input id="simKm" type="range" min="20" max="300" step="10" value="120" />
+                <label for="simFactor">CO₂ avoided per km (kg)</label>
+                <input id="simFactor" type="number" min="0" max="1" step="0.01" value="0.12" />
+                <p class="sim-result"><strong id="simResult">210</strong> tonnes CO₂ a year</p>
+                <p class="sim-note">Estimate: vehicles × km × 365 × factor. The factor is an assumption; replace it with your audited figure.</p>
+              </form>
+            </article>
+          </div>
+        </div>
       </section>
 
-      <section class="scene scene-clouds" id="clouds" data-scene="03">
-        <div class="storm-tunnel"></div>
-        <div class="radial-beam"></div>
-        <div class="cloud-bank cloud-bank-left"></div>
-        <div class="cloud-bank cloud-bank-right"></div>
-        <div class="scene-copy scene-copy-right">
-          <p class="eyebrow">PHASE 01 / ATMOSPHERE</p>
-          <h2>BREAK<br /><em>THE</em> CLOUDLINE.</h2>
-          <p>The route is not drawn on a map. It is revealed one layer at a time.</p>
+      <section class="sec sec-garage" id="evGarage" data-section="03" aria-labelledby="evGarage-title">
+        <div class="garage-layout">
+          <div class="sec-head">
+            <span class="sec-badge">03 / EV GARAGE</span>
+            <h2 id="evGarage-title">Twelve bays.<br /><em>One</em> charging rhythm.</h2>
+            <p>Kerala's first dedicated 12-bay AC EV charging garage. Vehicles come off shift, charge, and are back on the roster before the next pickup window.</p>
+            <p class="garage-status" aria-live="polite"><span id="garageCount">12</span> / 12 bays energised</p>
+            <button class="ghost-btn" id="garageOverride" type="button" aria-pressed="false">Emergency override</button>
+          </div>
+          <div class="garage-grid" id="garageGrid">
+            <div class="bay"><span>B01</span><i></i></div><div class="bay"><span>B02</span><i></i></div><div class="bay"><span>B03</span><i></i></div><div class="bay"><span>B04</span><i></i></div>
+            <div class="bay"><span>B05</span><i></i></div><div class="bay"><span>B06</span><i></i></div><div class="bay"><span>B07</span><i></i></div><div class="bay"><span>B08</span><i></i></div>
+            <div class="bay"><span>B09</span><i></i></div><div class="bay"><span>B10</span><i></i></div><div class="bay"><span>B11</span><i></i></div><div class="bay"><span>B12</span><i></i></div>
+          </div>
         </div>
-        <div class="altitude-readout"><span>DESCENT</span><strong>08,200</strong><small>METERS</small></div>
       </section>
 
-      <section class="scene scene-orbit" id="orbit" data-scene="04">
-        <div class="city-glow"></div>
-        <div class="orbital-grid"></div>
-        <div class="direction direction-north">N</div>
-        <div class="direction direction-east">E</div>
-        <div class="direction direction-south">S</div>
-        <div class="direction direction-west">W</div>
-        <div class="orbit-ring orbit-ring-large"></div>
-        <div class="orbit-ring orbit-ring-small"></div>
-        <div class="approach-needle"><span></span></div>
-        <div class="scene-copy scene-copy-center">
-          <p class="eyebrow">PHASE 02 / ORIENTATION</p>
-          <h2>EVERY<br />ROAD <em>LEADS</em><br />HERE.</h2>
+      <section class="sec sec-dashboard" id="dashboard" data-section="04" aria-labelledby="dashboard-title">
+        <div class="sec-head">
+          <span class="sec-badge">04 / OPERATIONS</span>
+          <h2 id="dashboard-title">Mission control for<br /><em>every</em> trip.</h2>
+          <p>Admins see bookings, vehicles, verification and billing on one screen, from the first pickup to the paid invoice.</p>
         </div>
-        <div class="orbit-caption">VECTOR LOCKED <span>·</span> 118° SE</div>
+        <div class="ops-panel">
+          <div class="ops-bar"><span class="status-pulse"></span> COMMAND CENTRE <em>SAMPLE DATA · ILLUSTRATIVE ONLY</em></div>
+          <div class="ops-tiles">
+            <div class="ops-tile"><span>Today's trips</span><strong data-count="286">286</strong></div>
+            <div class="ops-tile"><span>Active vehicles</span><strong data-count="64">64</strong></div>
+            <div class="ops-tile"><span>Pending verification</span><strong data-count="18">18</strong></div>
+            <div class="ops-tile"><span>Pending invoices</span><strong data-count="3">3</strong></div>
+          </div>
+          <div class="ops-body">
+            <div class="ops-pipeline">
+              <h3>Trip status</h3>
+              <ul>
+                <li><span>Scheduled</span><i style="--w:.42"></i><b>42</b></li>
+                <li><span>Assigned</span><i style="--w:.36"></i><b>36</b></li>
+                <li><span>En route</span><i style="--w:.21"></i><b>21</b></li>
+                <li><span>Trip started</span><i style="--w:.27"></i><b>27</b></li>
+                <li><span>Completed</span><i style="--w:.96"></i><b>96</b></li>
+                <li><span>Verified</span><i style="--w:.78"></i><b>78</b></li>
+              </ul>
+            </div>
+            <div class="ops-feed">
+              <h3>Live feed</h3>
+              <ol>
+                <li><code>TRP-DEMO-0142</code> Passenger picked up · Technopark Ph III</li>
+                <li><code>TRP-DEMO-0139</code> Trip completed · 18.4 km (GPS)</li>
+                <li><code>TRP-DEMO-0131</code> Flagged: KM mismatch, for human review</li>
+                <li><code>TRP-DEMO-0127</code> Customer verified · locked for billing</li>
+              </ol>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section class="scene scene-nexus" id="nexus" data-scene="05">
-        <div class="urban-grid"></div>
-        <div class="street street-one"></div>
-        <div class="street street-two"></div>
-        <div class="street street-three"></div>
-        <div class="street street-four"></div>
-        <div class="street street-five"></div>
-        <div class="nexus-rings"><i></i><i></i><i></i></div>
-        <div class="nexus-core"><span></span><b></b></div>
-        <div class="scene-copy scene-copy-left">
-          <p class="eyebrow">PHASE 03 / THE NEXUS</p>
-          <h2>THE CITY<br />TURNS <em>AROUND</em><br />YOU.</h2>
-          <p>A single point of arrival. A thousand trajectories beyond it.</p>
+      <section class="sec sec-landmark" id="landmark" data-section="05" aria-labelledby="landmark-title">
+        <div class="landmark-layout">
+          <div class="landmark-scope" aria-hidden="true">
+            <div class="scope-plane">
+              <img src="assets/flight/l1-technopark-water-tower.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async" />
+              <div class="scope-reticle"><i></i><i></i><b></b></div>
+            </div>
+          </div>
+          <div class="sec-head">
+            <span class="sec-badge">05 / ANCHOR NODE</span>
+            <h2 id="landmark-title">Technopark<br /><em>Water Tower.</em></h2>
+            <p>Every corridor route is measured from one fixed point. Pickup zones, shift windows and ETAs all resolve back to the tower.</p>
+            <p class="coord-readout"><span>LAT</span> 8.5570° N <span>LON</span> 76.8811° E</p>
+          </div>
         </div>
-        <div class="coordinates-card"><span>POSITION</span><strong>12.5918° N</strong><strong>77.6641° E</strong></div>
       </section>
 
-      <section class="scene scene-touchdown" id="touchdown" data-scene="06">
-        <div class="touchdown-sky"></div>
-        <div class="landing-platform"><i></i><i></i><i></i></div>
-        <div class="beacon beacon-left"></div>
-        <div class="beacon beacon-right"></div>
-        <div class="touchdown-copy">
-          <p class="eyebrow">PHASE 04 / ARRIVAL</p>
-          <h2>WELCOME<br />TO THE <em>NEXUS.</em></h2>
-          <a class="explore-link" href="#flight">BEGIN A NEW ROUTE <span>↗</span></a>
+      <section class="sec sec-twin" id="twin" data-section="06" aria-labelledby="twin-title">
+        <div class="sec-head sec-head-center">
+          <span class="sec-badge">06 / THE LIVING MODEL</span>
+          <h2 id="twin-title">One twin.<br /><em>Eight</em> systems.</h2>
+          <p>Compass Nexus iQ keeps every operational record connected, so any invoice line traces back to the trip, vehicle, driver and route behind it.</p>
+          <button class="ghost-btn" id="twinMotion" type="button" aria-pressed="true">Pause motion</button>
         </div>
-        <footer class="scene-footer"><span>COMPASS NEXUS / 2026</span><span>BUILDING THE NEXT BEARING</span></footer>
+        <div class="twin-stage">
+          <div class="twin-orbit" id="twinOrbit">
+            <div class="twin-core"><strong>iQ</strong><span>Single source of truth</span></div>
+            <div class="twin-node" style="--i:0">Customers &amp; contracts</div>
+            <div class="twin-node" style="--i:1">Vehicles</div>
+            <div class="twin-node" style="--i:2">Drivers</div>
+            <div class="twin-node" style="--i:3">Employees</div>
+            <div class="twin-node" style="--i:4">Trips &amp; GPS</div>
+            <div class="twin-node" style="--i:5">Verification</div>
+            <div class="twin-node" style="--i:6">Invoices &amp; payments</div>
+            <div class="twin-node" style="--i:7">Documents &amp; audit</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec sec-process" id="process" data-section="07" aria-labelledby="process-title">
+        <div class="process-pin">
+          <div class="sec-head">
+            <span class="sec-badge">07 / CORRIDOR PROCESS</span>
+            <h2 id="process-title">From booking<br />to <em>verified</em> invoice.</h2>
+          </div>
+          <div class="process-line"><i></i></div>
+          <ol class="process-steps">
+            <li class="process-step"><span>STEP 1</span><h3>Book &amp; dispatch</h3><p>Roster and bookings become trips with a unique Trip ID, an assigned vehicle and a verified driver.</p></li>
+            <li class="process-step"><span>STEP 2</span><h3>Run &amp; verify</h3><p>GPS route, actual KM, pickup and drop are checked against the booking, then the customer verifies and the trip is locked.</p></li>
+            <li class="process-step"><span>STEP 3</span><h3>Reconcile &amp; invoice</h3><p>AI flags exceptions for review. A person approves, and the invoice links back to every trip it bills.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="sec sec-stats" id="stats" data-section="08" aria-labelledby="stats-title">
+        <div class="sec-head sec-head-center">
+          <span class="sec-badge">08 / CORRIDOR TELEMETRY</span>
+          <h2 id="stats-title">The numbers<br /><em>behind</em> the route.</h2>
+        </div>
+        <div class="stats-grid">
+          <div class="stat"><strong data-count="150" data-suffix="+">150+</strong><span>Fleet vehicles</span></div>
+          <div class="stat"><strong data-count="16" data-prefix="₹" data-suffix="M+">₹16M+</strong><span>Billing managed</span></div>
+          <div class="stat"><strong data-count="99.98" data-decimals="2" data-suffix="%">99.98%</strong><span>On-time dispatch</span></div>
+          <div class="stat"><strong data-count="12" data-suffix="+">12+</strong><span>Years since 2012</span></div>
+          <div class="stat"><strong data-count="2.5" data-decimals="1" data-suffix="M+">2.5M+</strong><span>EV kilometres</span></div>
+          <div class="stat"><strong data-count="20">20</strong><span>UDAY awards</span></div>
+          <div class="stat"><strong data-count="12">12</strong><span>AC EV charging bays</span></div>
+          <div class="stat"><strong data-count="4">4</strong><span>Corridor landmarks</span></div>
+        </div>
+      </section>
+
+      <section class="sec sec-company" id="company" data-section="09" aria-labelledby="company-title">
+        <div class="company-layout">
+          <div class="sec-head">
+            <span class="sec-badge">09 / COMPANY</span>
+            <h2 id="company-title">Compass Travel<br />&amp; <em>Transportation.</em></h2>
+            <p>Moving Thiruvananthapuram's IT campuses, enterprises and ports since 2012. Direct accounts and sub-vendor partner operations run on the same standard of vehicles, drivers and records.</p>
+          </div>
+          <div class="company-cards">
+            <article class="company-card"><span>2012</span><h3>Founded</h3><p>Institutional employee transport from Thiruvananthapuram.</p></article>
+            <article class="company-card"><span>2.5M+ km</span><h3>Electric kilometres</h3><p>Driven by the EV fleet on corporate routes.</p></article>
+            <article class="company-card"><span>20</span><h3>UDAY awards</h3><p>Recognition for corporate mobility service.</p></article>
+            <article class="company-card"><span>12 bays</span><h3>AC EV garage</h3><p>A dedicated charging hub for the fleet.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec sec-usecases" id="usecases" data-section="10" aria-labelledby="usecases-title">
+        <div class="usecase-pin">
+          <div class="sec-head">
+            <span class="sec-badge">10 / SERVICES</span>
+            <h2 id="usecases-title">Four corridors.<br /><em>One</em> standard.</h2>
+          </div>
+          <div class="usecase-track">
+            <article class="usecase-card">
+              <img src="assets/flight/l1-technopark-water-tower.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async" />
+              <div><span>TECHNOPARK</span><h3>Shift transport</h3><p>Rostered pickups and drops for IT campus employees, with SOS, live ETA and no-show records.</p></div>
+            </article>
+            <article class="usecase-card">
+              <img src="assets/flight/l2-technopark-ganga-towers.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async" />
+              <div><span>EXECUTIVE</span><h3>Executive EV</h3><p>Dedicated EV SUVs for leadership, visitors and client days.</p></div>
+            </article>
+            <article class="usecase-card">
+              <img src="assets/flight/l3-trv-airport.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async" />
+              <div><span>TRV AIRPORT</span><h3>Airport link</h3><p>Terminal pickups timed to arrivals, logged as verified trips.</p></div>
+            </article>
+            <article class="usecase-card">
+              <img src="assets/flight/l4-vizhinjam-seaport.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async" />
+              <div><span>VIZHINJAM</span><h3>Port operations</h3><p>Crew change and terminal transport for the deepwater seaport.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec sec-port" id="port" data-section="11" aria-labelledby="port-title">
+        <div class="port-layout">
+          <div class="port-radar" aria-hidden="true">
+            <div class="radar-sweep"></div>
+            <span class="radar-node" id="portNodeVessel"><i></i>VESSEL</span>
+            <span class="radar-node" id="portNodeGate"><i></i>GATE</span>
+            <span class="radar-node radar-node-city"><i></i>CITY</span>
+          </div>
+          <div class="sec-head">
+            <span class="sec-badge">11 / VIZHINJAM SEAPORT</span>
+            <h2 id="port-title">Where the route<br /><em>meets</em> the sea.</h2>
+            <div class="port-cards">
+              <article><h3>Crew change</h3><p>Vessel-to-city and city-to-vessel transfers, planned around berth windows.</p></article>
+              <article><h3>Terminal shuttle</h3><p>Staff movement between gate, terminal and offices, shift by shift.</p></article>
+              <article><h3>Gate-to-airport</h3><p>Direct transfers linking the port with Trivandrum International.</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec sec-cta" id="cta" data-section="12" aria-labelledby="cta-title">
+        <div class="cta-terminal">
+          <i class="hud-corner hud-tl"></i><i class="hud-corner hud-tr"></i><i class="hud-corner hud-bl"></i><i class="hud-corner hud-br"></i>
+          <span class="sec-badge">12 / EARLY ACCESS</span>
+          <h2 id="cta-title">Launch your<br /><em>corridor.</em></h2>
+          <p>Talk to the Compass Nexus iQ team about employee transport, EV fleet and verified billing for your campus or port.</p>
+          <div class="cta-actions">
+            <a class="primary-btn" href="mailto:navigation@compassnai.com?subject=Compass%20Nexus%20iQ%20early%20access">Request early access <span aria-hidden="true">↗</span></a>
+            <a class="ghost-btn" href="#flight">Replay the flight</a>
+          </div>
+          <dl class="cta-contacts">
+            <div><dt>Email</dt><dd>navigation@compassnai.com</dd></div>
+            <div><dt>Phone</dt><dd>+91 99958 81477 · +91 85900 11477</dd></div>
+            <div><dt>Web</dt><dd><a href="https://www.compassnai.com">www.compassnai.com</a></dd></div>
+          </dl>
+        </div>
+        <footer class="site-footer"><span>COMPASS TRAVEL &amp; TRANSPORTATION · THIRUVANANTHAPURAM</span><span>COMPASS NEXUS iQ · INTELLIGENT NAVIGATION</span></footer>
       </section>
     </main>
 
