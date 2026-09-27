@@ -14,6 +14,7 @@ function buildFlightSequence() {
   const layers = gsap.utils.toArray(".flight-layer", flight);
   const dockLinks = gsap.utils.toArray(".flight-dock a", flight);
   const altitudeEl = flight.querySelector("[data-altitude]");
+  const altitudeStateEl = flight.querySelector("[data-altitude-state]");
   const altitude = { value: 11000 };
   const hold = 1; // timeline units each landmark stays on screen
 
@@ -69,7 +70,11 @@ function buildFlightSequence() {
     value: 0,
     duration: total - hold * 0.4,
     ease: "power1.in",
-    onUpdate: () => { altitudeEl.textContent = Math.round(altitude.value).toLocaleString("en-US"); }
+    onUpdate: () => {
+      const meters = Math.round(altitude.value);
+      altitudeEl.textContent = meters.toLocaleString("en-US");
+      altitudeStateEl.textContent = meters === 0 ? "METERS · TOUCHDOWN" : "METERS · DESCENDING";
+    }
   }, 0);
   tl.to(".compass-dial", { rotation: -360, svgOrigin: "50 50", duration: total }, 0);
   tl.to(".compass-needle", { rotation: 118, svgOrigin: "50 50", duration: total, ease: "sine.inOut" }, 0);
