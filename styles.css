@@ -8,6 +8,7 @@
   --line: rgb(186 220 255 / 22%);
   --mono: "DM Mono", monospace;
   --sans: "Manrope", sans-serif;
+  --gold: #e8c77a;
 }
 
 * { box-sizing: border-box; }
@@ -43,21 +44,17 @@ body::selection { color: var(--ink); background: var(--blue); }
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 29px 4.4vw;
-  mix-blend-mode: screen;
+  padding: 22px 4.4vw;
+  background: linear-gradient(rgb(2 6 15 / 62%), transparent);
 }
 
-.brand, .flight-status, .menu-trigger, .journey-rail, .eyebrow, .scene-corner, .scroll-prompt, .altitude-readout, .orbit-caption, .coordinates-card, .scene-footer {
+.flight-status, .menu-trigger, .journey-rail, .eyebrow, .scene-corner, .scroll-prompt, .altitude-readout, .orbit-caption, .coordinates-card, .scene-footer {
   font-family: var(--mono);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: .13em;
 }
 
-.brand { display: inline-flex; gap: 12px; align-items: center; color: var(--mist); text-decoration: none; }
-.brand-mark { position: relative; display: inline-grid; width: 17px; height: 17px; transform: rotate(45deg); border: 1px solid var(--blue); }
-.brand-mark i { position: absolute; width: 5px; height: 5px; background: var(--blue); }
-.brand-mark i:first-child { top: -2px; left: -2px; }.brand-mark i:last-child { right: -2px; bottom: -2px; }
 .flight-status { display: flex; gap: 8px; align-items: center; color: var(--sky); }
 .status-pulse { width: 6px; height: 6px; border-radius: 50%; background: #a7d7ff; box-shadow: 0 0 12px #65b8ff; }
 .menu-trigger { display: grid; gap: 5px; width: 28px; padding: 8px 0; border: 0; color: inherit; background: transparent; cursor: pointer; }
@@ -85,7 +82,72 @@ body::selection { color: var(--ink); background: var(--blue); }
 
 .scene-touchdown { place-items: center; background: #071629; }.touchdown-sky { position: absolute; z-index: -2; inset: 0; background: radial-gradient(ellipse at 50% 18%, rgb(100 186 255 / 25%), transparent 17%), linear-gradient(180deg, #102b4c, #06111f 64%); }.landing-platform { position: absolute; z-index: 1; bottom: -25vw; width: min(79vw, 850px); aspect-ratio: 1; border: 1px solid rgb(179 224 255 / 65%); border-radius: 50%; background: repeating-radial-gradient(circle, transparent 0 7%, rgb(124 201 255 / 24%) 7.2% 7.4%, transparent 7.8% 14%), radial-gradient(circle, rgb(29 87 133 / 77%), #061529 61%); box-shadow: 0 0 80px rgb(55 170 255 / 24%), inset 0 0 60px rgb(66 175 255 / 18%); }.landing-platform i { position: absolute; top: 50%; left: 50%; width: 100%; height: 1px; background: rgb(143 211 255 / 45%); transform-origin: 0 0; }.landing-platform i:nth-child(1) { transform: rotate(20deg); }.landing-platform i:nth-child(2) { transform: rotate(140deg); }.landing-platform i:nth-child(3) { transform: rotate(260deg); }.beacon { position: absolute; z-index: 2; bottom: 18%; width: 2px; height: 12vh; background: linear-gradient(transparent, var(--blue)); box-shadow: 0 0 12px 2px var(--blue); }.beacon-left { left: 18%; }.beacon-right { right: 18%; }.touchdown-copy { position: relative; z-index: 4; align-self: center; margin-top: -6vh; text-align: center; }.touchdown-copy h2 { font-size: clamp(3.8rem, 9.2vw, 9.3rem); }.explore-link { display: inline-flex; gap: 13px; align-items: center; margin-top: 31px; padding-bottom: 9px; border-bottom: 1px solid var(--blue); color: var(--mist); font-family: var(--mono); font-size: 11px; letter-spacing: .11em; text-decoration: none; }.explore-link span { color: var(--blue); font-size: 16px; }.scene-footer { position: absolute; z-index: 5; right: 4.4vw; bottom: 4%; left: 4.4vw; display: flex; justify-content: space-between; color: rgb(217 234 255 / 45%); }
 
+/* ---------- Compass Nexus iQ logo ---------- */
+.brand { display: inline-flex; gap: 12px; align-items: center; color: #f3f7ff; text-decoration: none; }
+.logo-badge { width: 44px; height: 44px; overflow: visible; }
+.logo-disc { filter: drop-shadow(0 0 6px rgb(52 132 255 / 45%)); }
+.logo-rim { stroke: rgb(120 180 255 / 42%); stroke-width: .8; }
+.logo-orbit { stroke: rgb(120 180 255 / 55%); stroke-width: .9; stroke-linecap: round; stroke-dasharray: 60; stroke-dashoffset: 60; animation: orbit-draw 1.4s .3s cubic-bezier(.6, 0, .2, 1) forwards; }
+.logo-orbit-dot { fill: #9fd0ff; stroke: rgb(101 184 255 / 55%); stroke-width: 1.4; opacity: 0; animation: dot-in .6s 1.4s ease-out forwards; }
+.logo-arrow { stroke: #6fc3ff; stroke-width: 2.6; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: arrow-draw 1.6s .2s cubic-bezier(.65, 0, .25, 1) forwards, arrow-glow 3.2s 1.8s ease-in-out infinite; }
+.logo-type { display: grid; gap: 3px; }
+.logo-word { margin: 0; font-family: var(--sans); font-size: 17px; font-weight: 700; line-height: 1; letter-spacing: -.02em; white-space: nowrap; }
+.logo-word sup { margin-left: 2px; color: var(--blue); font-size: .55em; font-weight: 700; vertical-align: super; }
+.logo-tagline { display: flex; gap: 8px; align-items: center; margin: 0; color: rgb(203 220 245 / 72%); font-family: var(--sans); font-size: 7.5px; font-weight: 700; letter-spacing: .32em; white-space: nowrap; }
+.logo-tagline i { display: block; width: 36px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, #2f7fe0, rgb(101 184 255 / 0%)); transform-origin: left; animation: tagline-sweep 1.2s 1s cubic-bezier(.6, 0, .2, 1) both; }
+@keyframes arrow-draw { to { stroke-dashoffset: 0; } }
+@keyframes arrow-glow { 50% { stroke: #bfe4ff; } }
+@keyframes orbit-draw { to { stroke-dashoffset: 0; } }
+@keyframes dot-in { to { opacity: 1; } }
+@keyframes tagline-sweep { from { transform: scaleX(0); opacity: 0; } }
+
+/* ---------- 4-layer flight sequence ---------- */
+.scene-flight { display: block; min-height: 0; background: #02060d; }
+.scene-flight::after { display: none; }
+.flight-stage { position: relative; }
+.flight-layer { position: relative; height: 100svh; margin: 0; overflow: hidden; background: #02060d; }
+.flight-layer img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(1.08) contrast(1.06); will-change: transform; }
+.flight-layer::after { position: absolute; inset: 0; pointer-events: none; content: ""; background: linear-gradient(90deg, rgb(1 5 14 / 62%), rgb(1 5 14 / 0%) 55%), radial-gradient(ellipse at 50% 45%, transparent 45%, rgb(1 4 12 / 70%) 100%), linear-gradient(0deg, rgb(1 5 14 / 78%), transparent 42%); }
+.flight-caption .eyebrow, .flight-caption > p:last-child, .flight-altitude { text-shadow: 0 1px 12px rgb(0 0 0 / 85%), 0 0 2px rgb(0 0 0 / 70%); }
+.flight-caption { position: absolute; z-index: 2; bottom: 17vh; left: 4.4vw; width: min(90vw, 560px); }
+.flight-caption .eyebrow b { color: var(--gold); font-weight: 500; }
+.flight-caption h2 { font-size: clamp(2.8rem, 6.4vw, 6.4rem); text-shadow: 0 6px 40px rgb(0 0 0 / 55%); }
+.flight-caption > p:last-child { max-width: 40ch; margin: 22px 0 0; color: rgb(222 236 255 / 82%); font-size: 14px; line-height: 1.65; }
+.flight-intro, .flight-hud, .flight-dock, .flight-letterbox { display: none; }
+
+.scene-flight.is-cinematic .flight-stage { height: 100svh; overflow: hidden; }
+.scene-flight.is-cinematic .flight-layer { position: absolute; inset: 0; height: auto; }
+.scene-flight.is-cinematic .flight-letterbox { position: absolute; z-index: 6; inset: 0; display: block; pointer-events: none; box-shadow: inset 0 7vh 0 #000, inset 0 -7vh 0 #000; }
+.scene-flight.is-cinematic .flight-intro { position: absolute; z-index: 7; inset: 0; display: grid; place-content: center; justify-items: center; gap: 14px; text-align: center; pointer-events: none; background: radial-gradient(ellipse at center, rgb(2 8 20 / 72%), rgb(2 8 20 / 0%) 60%); }
+.logo-badge-xl { width: clamp(96px, 14vw, 150px); height: auto; margin-bottom: 10px; }
+.flight-intro .logo-word { font-size: clamp(2.4rem, 6vw, 4.6rem); letter-spacing: -.035em; }
+.flight-intro .logo-tagline { font-size: clamp(9px, 1.1vw, 13px); }
+.flight-intro .logo-tagline i { width: clamp(50px, 8vw, 110px); }
+.scene-flight.is-cinematic .flight-hud { position: absolute; z-index: 7; top: 12vh; right: 4.4vw; display: flex; gap: 16px; align-items: center; }
+.flight-compass { width: 74px; height: 74px; }
+.flight-compass circle { fill: rgb(4 14 30 / 45%); stroke: rgb(186 220 255 / 40%); stroke-width: 1; backdrop-filter: blur(6px); }
+.compass-ticks { stroke: rgb(220 236 255 / 70%); stroke-width: 1.4; }
+.flight-compass text { fill: var(--gold); font-family: var(--mono); font-size: 11px; text-anchor: middle; dominant-baseline: middle; }
+.compass-needle { fill: var(--blue); filter: drop-shadow(0 0 4px var(--blue)); }
+.flight-altitude { display: grid; gap: 3px; color: rgb(204 229 255 / 62%); font-family: var(--mono); font-size: 9px; letter-spacing: .14em; }
+.flight-altitude strong { color: var(--mist); font-size: 26px; font-weight: 400; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.flight-altitude small { font-size: 8px; }
+.scene-flight.is-cinematic .flight-dock { position: absolute; z-index: 8; bottom: calc(7vh + 18px); left: 50%; display: flex; gap: 6px; padding: 6px; transform: translateX(-50%); border: 1px solid rgb(186 220 255 / 22%); border-radius: 14px; background: rgb(6 16 34 / 48%); backdrop-filter: blur(14px) saturate(1.3); -webkit-backdrop-filter: blur(14px) saturate(1.3); }
+.flight-dock a { position: relative; display: grid; gap: 2px; min-width: 104px; padding: 8px 12px 11px; overflow: hidden; border-radius: 9px; color: rgb(220 236 255 / 60%); font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-decoration: none; transition: color .3s, background .3s; }
+.flight-dock a b { font-weight: 500; }
+.flight-dock a span { color: var(--gold); opacity: .75; }
+.flight-dock a i { position: absolute; right: 12px; bottom: 5px; left: 12px; height: 2px; background: rgb(220 236 255 / 16%); }
+.flight-dock a i::after { display: block; width: calc(var(--p, 0) * 100%); height: 100%; content: ""; background: var(--blue); box-shadow: 0 0 6px var(--blue); }
+.flight-dock a[aria-current="step"] { color: #fff; background: rgb(101 184 255 / 14%); }
+.flight-dock a:hover, .flight-dock a:focus-visible { color: #fff; }
+.flight-dock a:focus-visible { outline: 1px solid var(--blue); outline-offset: 2px; }
+
 @media (max-width: 700px) {
+  .logo-badge { width: 38px; height: 38px; }.logo-word { font-size: 15px; }.logo-tagline { font-size: 6.5px; }.logo-tagline i { width: 22px; }
+  .flight-caption { bottom: 22vh; left: 22px; width: auto; right: 22px; }.flight-caption > p:last-child { font-size: 13px; }
+  .scene-flight.is-cinematic .flight-hud { top: 11vh; right: 22px; }.flight-compass { width: 54px; height: 54px; }.flight-altitude strong { font-size: 20px; }
+  .scene-flight.is-cinematic .flight-dock { right: 12px; left: 12px; bottom: calc(5vh + 12px); transform: none; }.flight-dock a { flex: 1; min-width: 0; padding: 7px 8px 10px; font-size: 8px; }.flight-dock a b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .scene-flight.is-cinematic .flight-letterbox { box-shadow: inset 0 5vh 0 #000, inset 0 -5vh 0 #000; }
   .site-header { padding: 22px 22px; }.flight-status { display: none; }.journey-rail { right: 22px; bottom: 21px; }.rail-line { width: 48px; }.scene-corner { left: 22px; }.scene-copy-right, .scene-copy-left { align-self: end; width: auto; margin: 0 22px 18vh; }.scene-copy-right { justify-self: start; }.scene-copy > p:last-child { margin-top: 18px; }.altitude-readout { bottom: 8%; left: 22px; }.direction-east { right: 7%; }.direction-west { left: 7%; }.scene-copy-center { align-self: center; }.orbit-caption { bottom: 16%; }.nexus-rings { width: 64vw; }.coordinates-card { right: 22px; bottom: 8%; }.touchdown-copy { margin-top: -11vh; }.scene-footer { right: 22px; bottom: 4%; left: 22px; font-size: 8px; }.hero-copy { font-size: 13px; }.corner-top { top: 18%; }
 }
 
