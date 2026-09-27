@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#050b15" />
-    <title>Compass Nexus — Descent Protocol</title>
+    <title>Compass Nexus iQ — Intelligent Navigation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -13,9 +13,22 @@
   <body>
     <div class="grain" aria-hidden="true"></div>
     <header class="site-header">
-      <a class="brand" href="#arrival" aria-label="Compass Nexus home">
-        <span class="brand-mark"><i></i><i></i></span>
-        <span>COMPASS NEXUS</span>
+      <a class="brand" href="#flight" aria-label="Compass Nexus iQ — Intelligent Navigation, home">
+        <svg class="logo-badge" viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <radialGradient id="badgeFill" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#0d2550" /><stop offset=".7" stop-color="#050d1f" /><stop offset="1" stop-color="#02060f" /></radialGradient>
+            <filter id="arrowGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+          </defs>
+          <circle class="logo-disc" cx="32" cy="32" r="27" fill="url(#badgeFill)" />
+          <circle class="logo-rim" cx="32" cy="32" r="27" fill="none" />
+          <path class="logo-orbit" d="M9.6 11.4 A31 31 0 0 1 44 3.4" fill="none" />
+          <circle class="logo-orbit-dot" r="1.9"><animateMotion dur="7s" begin="0s" repeatCount="indefinite" path="M9.6 11.4 A31 31 0 0 1 44 3.4" keyPoints="0;1;0" keyTimes="0;.5;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1" /></circle>
+          <path class="logo-arrow" filter="url(#arrowGlow)" pathLength="1" d="M19 22.5 L45.5 19 L33 44 L30.4 31.8 Z M19 22.5 L30.4 31.8" fill="none" />
+        </svg>
+        <span class="logo-type">
+          <span class="logo-word">Compass Nexus<sup>iQ</sup></span>
+          <span class="logo-tagline"><span>INTELLIGENT NAVIGATION</span><i></i></span>
+        </span>
       </a>
       <div class="flight-status">
         <span class="status-pulse"></span>
@@ -27,11 +40,77 @@
     <aside class="journey-rail" aria-label="Journey progress">
       <span class="rail-number">01</span>
       <span class="rail-line"><i class="rail-fill"></i></span>
-      <span class="rail-number">05</span>
+      <span class="rail-number">06</span>
     </aside>
 
     <main>
-      <section class="scene scene-arrival" id="arrival" data-scene="01">
+      <section class="scene scene-flight" id="flight" data-scene="01" aria-label="Flight approach over four Thiruvananthapuram landmarks">
+        <div class="flight-stage">
+          <figure class="flight-layer" id="flight-l1" data-alt="11000">
+            <img src="assets/flight/l1-technopark-water-tower.jpg" alt="Aerial dusk view from an aircraft window over the Technopark water tower, a circular smart-campus road network, office blocks and the Arabian Sea coastline." width="1672" height="941" decoding="async" fetchpriority="high" />
+            <figcaption class="flight-caption">
+              <p class="eyebrow"><b>L1 · WATER TOWER</b> &nbsp;/&nbsp; TECHNOPARK · 8.5570° N · 76.8811° E</p>
+              <h2>THE <em>ANCHOR</em><br />NODE.</h2>
+              <p>The Technopark water tower — the fixed bearing every corridor route is measured from.</p>
+            </figcaption>
+          </figure>
+          <figure class="flight-layer" id="flight-l2" data-alt="7300">
+            <img src="assets/flight/l2-technopark-ganga-towers.jpg" alt="Aircraft window view at sunset over the Ganga and Yamuna twin towers of Technopark Phase III, joined by an illuminated skybridge beside a busy highway." width="1672" height="941" decoding="async" loading="eager" />
+            <figcaption class="flight-caption">
+              <p class="eyebrow"><b>L2 · GANGA</b> &nbsp;/&nbsp; TECHNOPARK PHASE III · GANGA &amp; YAMUNA</p>
+              <h2>WHERE THE<br /><em>SHIFT</em> BEGINS.</h2>
+              <p>Ganga and Yamuna — the twin towers where employee journeys start and end, shift after shift.</p>
+            </figcaption>
+          </figure>
+          <figure class="flight-layer" id="flight-l3" data-alt="3600">
+            <img src="assets/flight/l3-trv-airport.jpg" alt="Golden-hour approach over Trivandrum International Airport, its lit terminal, parked aircraft and runway beside the coastline." width="1672" height="941" decoding="async" loading="eager" />
+            <figcaption class="flight-caption">
+              <p class="eyebrow"><b>L3 · TRV AIRPORT</b> &nbsp;/&nbsp; TRIVANDRUM INTERNATIONAL · TRV</p>
+              <h2>CLEARED<br />FOR <em>FINAL.</em></h2>
+              <p>The airport link — terminal pickups timed to the arrivals board, not the other way round.</p>
+            </figcaption>
+          </figure>
+          <figure class="flight-layer" id="flight-l4" data-alt="0">
+            <img src="assets/flight/l4-vizhinjam-seaport.jpg" alt="Aircraft window view over Vizhinjam deepwater seaport at dusk, with container cranes, a loaded container vessel and tugboats on the water." width="1672" height="941" decoding="async" loading="eager" />
+            <figcaption class="flight-caption">
+              <p class="eyebrow"><b>L4 · VIZHINJAM</b> &nbsp;/&nbsp; VIZHINJAM INTERNATIONAL SEAPORT</p>
+              <h2>WHERE THE<br />ROUTE <em>MEETS</em><br />THE SEA.</h2>
+              <p>The southern corridor ends at the deepwater port — crew change and terminal transport on the same trip ledger.</p>
+            </figcaption>
+          </figure>
+          <div class="flight-intro" aria-hidden="true">
+            <svg class="logo-badge logo-badge-xl" viewBox="0 0 64 64">
+              <circle class="logo-disc" cx="32" cy="32" r="27" fill="url(#badgeFill)" />
+              <circle class="logo-rim" cx="32" cy="32" r="27" fill="none" />
+              <path class="logo-orbit" d="M9.6 11.4 A31 31 0 0 1 44 3.4" fill="none" />
+              <circle class="logo-orbit-dot" r="1.9"><animateMotion dur="7s" begin="0s" repeatCount="indefinite" path="M9.6 11.4 A31 31 0 0 1 44 3.4" keyPoints="0;1;0" keyTimes="0;.5;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1" /></circle>
+              <path class="logo-arrow" filter="url(#arrowGlow)" pathLength="1" d="M19 22.5 L45.5 19 L33 44 L30.4 31.8 Z M19 22.5 L30.4 31.8" fill="none" />
+            </svg>
+            <p class="logo-word">Compass Nexus<sup>iQ</sup></p>
+            <p class="logo-tagline"><span>INTELLIGENT NAVIGATION</span><i></i></p>
+          </div>
+          <div class="flight-letterbox" aria-hidden="true"></div>
+          <div class="flight-hud" aria-hidden="true">
+            <svg class="flight-compass" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="46" />
+              <g class="compass-dial">
+                <path class="compass-ticks" d="M50 6v8M50 86v8M6 50h8M86 50h8M18.9 18.9l4.2 4.2M76.9 76.9l4.2 4.2M81.1 18.9l-4.2 4.2M23.1 76.9l-4.2 4.2" />
+                <text x="50" y="25">N</text>
+              </g>
+              <path class="compass-needle" d="M50 30 L55 52 L50 48 L45 52 Z" />
+            </svg>
+            <div class="flight-altitude"><span>ALTITUDE</span><strong data-altitude>11,000</strong><small>METERS · DESCENDING</small></div>
+          </div>
+          <nav class="flight-dock" id="heroLayersDock" aria-label="Flight layers">
+            <a href="#flight-l1" data-layer="0"><span>L1</span><b>WATER TOWER</b><i></i></a>
+            <a href="#flight-l2" data-layer="1"><span>L2</span><b>GANGA</b><i></i></a>
+            <a href="#flight-l3" data-layer="2"><span>L3</span><b>AIRPORT</b><i></i></a>
+            <a href="#flight-l4" data-layer="3"><span>L4</span><b>SEAPORT</b><i></i></a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="scene scene-arrival" id="arrival" data-scene="02">
         <div class="cloud-field cloud-field-far"></div>
         <div class="cloud-field cloud-field-near"></div>
         <div class="aurora-haze"></div>
@@ -45,7 +124,7 @@
         <div class="scene-corner corner-bottom">ALT. 10,400 M</div>
       </section>
 
-      <section class="scene scene-clouds" id="clouds" data-scene="02">
+      <section class="scene scene-clouds" id="clouds" data-scene="03">
         <div class="storm-tunnel"></div>
         <div class="radial-beam"></div>
         <div class="cloud-bank cloud-bank-left"></div>
@@ -58,7 +137,7 @@
         <div class="altitude-readout"><span>DESCENT</span><strong>08,200</strong><small>METERS</small></div>
       </section>
 
-      <section class="scene scene-orbit" id="orbit" data-scene="03">
+      <section class="scene scene-orbit" id="orbit" data-scene="04">
         <div class="city-glow"></div>
         <div class="orbital-grid"></div>
         <div class="direction direction-north">N</div>
@@ -75,7 +154,7 @@
         <div class="orbit-caption">VECTOR LOCKED <span>·</span> 118° SE</div>
       </section>
 
-      <section class="scene scene-nexus" id="nexus" data-scene="04">
+      <section class="scene scene-nexus" id="nexus" data-scene="05">
         <div class="urban-grid"></div>
         <div class="street street-one"></div>
         <div class="street street-two"></div>
@@ -92,7 +171,7 @@
         <div class="coordinates-card"><span>POSITION</span><strong>12.5918° N</strong><strong>77.6641° E</strong></div>
       </section>
 
-      <section class="scene scene-touchdown" id="touchdown" data-scene="05">
+      <section class="scene scene-touchdown" id="touchdown" data-scene="06">
         <div class="touchdown-sky"></div>
         <div class="landing-platform"><i></i><i></i><i></i></div>
         <div class="beacon beacon-left"></div>
@@ -100,7 +179,7 @@
         <div class="touchdown-copy">
           <p class="eyebrow">PHASE 04 / ARRIVAL</p>
           <h2>WELCOME<br />TO THE <em>NEXUS.</em></h2>
-          <a class="explore-link" href="#arrival">BEGIN A NEW ROUTE <span>↗</span></a>
+          <a class="explore-link" href="#flight">BEGIN A NEW ROUTE <span>↗</span></a>
         </div>
         <footer class="scene-footer"><span>COMPASS NEXUS / 2026</span><span>BUILDING THE NEXT BEARING</span></footer>
       </section>
