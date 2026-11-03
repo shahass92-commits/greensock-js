@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f6f3" />
+    <title>CNIQ Drive — Seven-Seat Electric</title>
+    <meta name="description" content="Compass Nexus iQ — the seven-seat electric fleet behind safe, verified employee transportation in Thiruvananthapuram." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter+Tight:wght@500;600;700;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="drive.css" />
+    <script>
+      // Hide animated hero pieces until GSAP is ready; force-reveal if the module never loads.
+      document.documentElement.classList.add("js");
+      setTimeout(() => document.documentElement.classList.add("js-fallback"), 3000);
+    </script>
+  </head>
+  <body data-view="seven-seat">
+    <a class="skip-link" href="#journey">Skip to the journey</a>
+
+    <header class="d-header">
+      <a class="d-brand" href="#top" aria-label="CNIQ — Navigate Intelligence, back to top">
+        <span class="d-brand-word">CNIQ</span>
+        <span class="d-brand-tag">Navigate intelligence</span>
+      </a>
+      <nav class="d-nav" aria-label="Primary">
+        <a href="#journey">The journey</a>
+        <a href="#ecosystem">Our ecosystem</a>
+        <a class="d-pill" href="#plan">Plan a journey
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" /></svg>
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- 01 — HERO: clean first section -->
+      <section class="hero" id="top" aria-labelledby="heroTitle">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="eyebrow" data-bind="eyebrow"><i></i>A connected world of movement</p>
+          <h1 class="hero-title" id="heroTitle">
+            <span class="hero-line" data-bind="line1">Seven seats.</span>
+            <span class="hero-line" data-bind="line2">Precisely planned.</span>
+          </h1>
+          <div class="hero-meta">
+            <p class="hero-sub" data-bind="sub">Pure electric, professionally driven<br />and verified on every trip.</p>
+            <a class="scroll-cue" href="#journey">
+              <span>Scroll to explore</span>
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v11M3.5 9 8 13.5 12.5 9" /></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-stage">
+          <div class="stage-floor" aria-hidden="true"></div>
+          <div class="car-rig">
+            <img class="hero-car" src="assets/drive/mpv-side.png" width="932" height="314" alt="White seven-seat electric MPV in side profile." fetchpriority="high" data-bind-src="car" />
+            <span class="car-shadow" aria-hidden="true"></span>
+          </div>
+          <ul class="spec-tags" aria-label="Vehicle highlights">
+            <li style="--x: 22%; --y: 8%"><b>07</b>Seats, three rows</li>
+            <li style="--x: 47%; --y: -6%"><b>EV</b>Pure electric drive</li>
+            <li style="--x: 72%; --y: 10%"><b>GPS</b>Live trip tracking</li>
+          </ul>
+        </div>
+
+        <p class="hero-outro" aria-hidden="true">From booking to verified trip to invoice —<br />one connected journey.</p>
+
+        <div class="hero-foot">
+          <span>Compass Nexus iQ</span>
+          <span class="hero-progress" aria-hidden="true"><i></i></span>
+          <span>01 — The road ahead</span>
+        </div>
+      </section>
+
+      <!-- 02 — ROAD: reliability at every milestone -->
+      <section class="road" id="journey" aria-labelledby="roadTitle">
+        <div class="road-copy">
+          <header class="road-head">
+            <p class="speed" aria-hidden="true"><b data-speed>0</b> km/h</p>
+            <h2 class="road-title" id="roadTitle">
+              <span class="fill-line">Reliability</span>
+              <span class="fill-line">at every</span>
+              <span class="fill-line">milestone</span>
+            </h2>
+            <ul class="road-pills">
+              <li>Real-time<br />tracking</li>
+              <li>Optimised<br />routing</li>
+              <li>Service-wide<br />data</li>
+            </ul>
+          </header>
+
+          <article class="milestone">
+            <span class="ms-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><path d="M5 20h22M8 20l2-7h12l2 7M10 24v-4M22 24v-4M11 16h10" /></svg>
+            </span>
+            <p class="ms-index">01</p>
+            <h3>Employee shuttles</h3>
+            <p>Shift-aligned pickups and drops for IT campuses, with the roster, vehicle and driver locked to every Trip ID.</p>
+          </article>
+
+          <article class="milestone">
+            <span class="ms-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><path d="M4 18.5 28 11l-2.5-2.5-9 3L9 5.5 6.5 6.5l5 7.5-5.5 2-2.5-2L2 15z M6 26h20" /></svg>
+            </span>
+            <p class="ms-index">02</p>
+            <h3>Airport transfers</h3>
+            <p>Seamless, punctual, all-electric journeys to and from Thiruvananthapuram International Airport.</p>
+          </article>
+
+          <article class="milestone">
+            <span class="ms-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><path d="M9 20a3 3 0 1 0 0 .01M9 17V7a3 3 0 1 1 6 0c0 3-3 5-3 10M23 26a3 3 0 1 0 0 .01M23 23V13a3 3 0 1 1 6 0" /></svg>
+            </span>
+            <p class="ms-index">03</p>
+            <h3>Intercity travel</h3>
+            <p>Comfortable, efficient and sustainable travel between key cities, planned and tracked end to end.</p>
+          </article>
+
+          <article class="milestone">
+            <span class="ms-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><path d="M16 4 6 8v7c0 6.5 4.3 11 10 13 5.7-2 10-6.5 10-13V8zM11.5 16l3.2 3.2 6-6.4" /></svg>
+            </span>
+            <p class="ms-index">04</p>
+            <h3>Verified, then billed</h3>
+            <p>Actual KM, pickup and drop are verified before a trip becomes billable — every invoice traces back to its trips.</p>
+          </article>
+        </div>
+
+        <div class="road-lane" aria-hidden="true">
+          <div class="lane-sticky">
+            <div class="lane-asphalt">
+              <span class="lane-dash"></span>
+              <span class="lane-edge lane-edge-l"></span>
+              <span class="lane-edge lane-edge-r"></span>
+            </div>
+            <div class="lane-rig">
+              <span class="lane-beam"></span>
+              <img class="lane-car" src="assets/drive/mpv-top.png" width="114" height="264" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 — STUDIO: front view reveal -->
+      <section class="studio" id="studio" aria-labelledby="studioTitle">
+        <div class="studio-copy">
+          <p class="eyebrow"><i></i>Designed for the daily commute</p>
+          <h2 class="studio-title" id="studioTitle" data-words>Wide doors, three calm rows and a cabin built for the shift change — not the showroom.</h2>
+        </div>
+        <figure class="studio-frame">
+          <img src="assets/drive/mpv-front.jpg" width="1152" height="864" alt="Front view of a white electric car in a bright studio." loading="lazy" />
+          <figcaption>
+            <span>Front view</span>
+            <span>Inspected · Insured · Fitness-certified</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- 04 — ECOSYSTEM -->
+      <section class="eco" id="ecosystem" aria-labelledby="ecoTitle">
+        <div class="eco-inner">
+          <p class="eyebrow eyebrow-dark"><i></i>Our ecosystem</p>
+          <h2 class="eco-title" id="ecoTitle" data-split-lines>One connected ecosystem.<br />A more considered way forward.</h2>
+          <ul class="eco-chips">
+            <li>
+              <a href="#plan">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15h18M5 15l1.6-4.8A2 2 0 0 1 8.5 9h7a2 2 0 0 1 1.9 1.2L19 15M6.5 18.5a1.5 1.5 0 1 0 0 .01M17.5 18.5a1.5 1.5 0 1 0 0 .01" /></svg>
+                <span>Mobility</span><small>Employee transport</small>
+              </a>
+            </li>
+            <li>
+              <a href="#plan">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13.5 21 8l-1.8-1.8-6.6 2.2L7 4.5 5.2 5.2l3.6 5.5-4 1.4-1.8-1.4L2 11.3z" /></svg>
+                <span>Terminal</span><small>Airport &amp; port runs</small>
+              </a>
+            </li>
+            <li>
+              <a href="#plan">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 5 13.5h6L10 22l8-11.5h-6z" /></svg>
+                <span>Power</span><small>Electric fleet</small>
+              </a>
+            </li>
+            <li>
+              <a href="#plan">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7zM3.5 7 12 11.5 20.5 7M12 11.5v10" /></svg>
+                <span>Logistics</span><small>Trips to invoices</small>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 05 — PLAN -->
+      <section class="plan" id="plan" aria-labelledby="planTitle">
+        <p class="eyebrow"><i></i>Plan a journey</p>
+        <h2 class="plan-title" id="planTitle" data-split-lines>Tell us the route.<br />We’ll handle the rest.</h2>
+        <dl class="plan-contacts">
+          <div><dt>Email</dt><dd><a href="mailto:navigation@compassnai.com">navigation@compassnai.com</a></dd></div>
+          <div><dt>Phone</dt><dd><a href="tel:+919995881477">+91 99958 81477</a> · <a href="tel:+918590011477">+91 85900 11477</a></dd></div>
+          <div><dt>Web</dt><dd><a href="https://www.compassnai.com">www.compassnai.com</a></dd></div>
+        </dl>
+        <footer class="d-footer">
+          <span>Compass Travel &amp; Transportation · Thiruvananthapuram</span>
+          <span>Compass Nexus iQ · Intelligent navigation</span>
+        </footer>
+      </section>
+    </main>
+
+    <script type="module" src="drive.js"></script>
+  </body>
+</html>
